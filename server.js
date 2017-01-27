@@ -28,7 +28,7 @@ function serveImage(filename, req, res){
 			res.end("Silly me");
 			return;
 		}
-		res.setHeader("Content-Type", "images/jpeg");
+		res.setHeader("Content-Type", "image/jpeg");
 		res.end(body);		
 	});
 }
@@ -40,31 +40,31 @@ var server = http.createServer(function(req, res){
 		case "/chess/":
 		case "/chess.jpg":
 		case "/chess.jpeg":
-			serveImage('chess.jpg', req, res);
+			serveImage("chess.jpg", req, res);
 			break;
 		case "/fern":
 		case "/fern/":
 		case "/fern.jpg":
 		case "/fern.jpeg":
-			serveImage('fern.jpg', req, res);
+			serveImage("fern.jpg", req, res);
 			break;
 		case "/ace":
 		case "/ace/":
 		case "/ace.jpg":
 		case "/ace.jpeg":
-			serveImage('ace.jpg', req, res);
+			serveImage("ace.jpg", req, res);
 			break;
 		case "/bubble":
 		case "/bubble/":
 		case "/bubble.jpg":
 		case "/bubble.jpeg":
-			serveImage('bubble.jpg', req, res);
+			serveImage("bubble.jpg", req, res);
 			break;
 		case "/mobile":
 		case "/mobile/":
 		case "/mobile.jpg":
 		case "/mobile.jpeg":
-			serveImage('mobile.jpg', req, res);
+			serveImage("mobile.jpg", req, res);
 			break;
 		default:
 			res.statusCode = 404;
