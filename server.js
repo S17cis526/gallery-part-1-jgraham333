@@ -48,6 +48,24 @@ var server = http.createServer(function(req, res){
 		case "/fern.jpeg":
 			serveImage('fern.jpg', req, res);
 			break;
+		case "/ace":
+		case "/ace/":
+		case "/ace.jpg":
+		case "/ace.jpeg":
+			serveImage('ace.jpg', req, res);
+			break;
+		case "/bubble":
+		case "/bubble/":
+		case "/bubble.jpg":
+		case "/bubble.jpeg":
+			serveImage('bubble.jpg', req, res);
+			break;
+		case "/mobile":
+		case "/mobile/":
+		case "/mobile.jpg":
+		case "/mobile.jpeg":
+			serveImage('mobile.jpg', req, res);
+			break;
 		default:
 			res.statusCode = 404;
 			res.statusMessage = "Not found";
