@@ -1,13 +1,7 @@
 "use strict";
 
 /** Justin Graham - cis526 in class web server example */
-/** there is an existing bug in which images that are
-	accessed are downloaded immediately to the computer
-	instead of displaying in browser. Also, when images
-	are accessed without using an explicit file extension
-	the file that gets downloaded will lack the extension
-	but adding the proper extension to the downloaded file
-	will show that the correcet file was downloaded. */
+
 /**
  * server.js
  * This file defines the server for a
@@ -17,6 +11,10 @@
 var fs = require('fs');
 var http = require('http');
 var port = 3000;
+
+var stylesheet = fs.readFileSync('gallery.css');
+
+var imageNames = ['ace.jpg', 'bubble.jpg', 'chess.jpg', 'fern.jpg', 'mobile.jpg'];
 
 function serveImage(filename, req, res){
 
@@ -36,6 +34,27 @@ function serveImage(filename, req, res){
 var server = http.createServer(function(req, res){
 
 	switch(req.url){
+		case '/gallery':
+			var gHtml = imageNames.map(function(fileName){
+					return '<img src="' + fileName + '" alt="finishing ' + fileName + ' at work">';
+				}).join(' ');
+			var html = '<!doctype html>';
+				html += '<head>'
+				html += '	<title>Dynamic Page</title>';
+				html += '	<link href="gallery.css" rel="stylesheet" type="text/css">';
+				html +=	'</head>';
+				html += '<body>';
+				html += '	<h1>Gallery</h1>';
+				html += gHtml;
+				html += '	<h1>Hello.</h1> Time is ' + Date.now();
+				html += '</body>';
+			res.setHeader('Content-Type', 'text/html');
+			res.end(html);
+			break;
+		case '/gallery.css':
+			res.setHeader('Content-Type', 'text/css');
+			res.end(stylesheet);
+			break;
 		case "/chess":
 		case "/chess/":
 		case "/chess.jpg":
